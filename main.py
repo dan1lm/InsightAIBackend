@@ -12,10 +12,19 @@ app = FastAPI()
 try:
     # Set HF token
     os.environ["HUGGING_FACE_HUB_TOKEN"] = os.getenv("HUGGING_FACE_TOKEN")
+    print(os.environ["HUGGING_FACE_HUB_TOKEN"])
+    
+
+    #if torch.backends.mps.is_available():
+    #    device = torch.device("mps")
+    #else:
+    #    device = torch.device("cpu")  
+    #print('device: ', device)
     
     generator = pipeline(
         "text-generation",
-        model="meta-llama/Llama-2-7b-chat-hf",
+        #model="meta-llama/Llama-2-7b-chat-hf",
+        model="TinyLlama/TinyLlama-1.1B-Chat-v1.0",
         torch_dtype=torch.float16,
         device_map="auto"
     )
